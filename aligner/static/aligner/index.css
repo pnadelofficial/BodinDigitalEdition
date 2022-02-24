@@ -1,0 +1,27 @@
+/* word[align_id="None"] {
+  color: red;
+} */
+
+/* word[sent_aligned="None"]{
+  color: red;
+} */
+
+.tooltip-inner{
+  word-wrap: break-word;
+  text-align: left;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+html {
+  font-size: 100%
+}
+
+p {
+  text-align: center;
+  padding-left: 50px;
+  padding-right: 50px;
+}
