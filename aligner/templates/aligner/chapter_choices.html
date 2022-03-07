@@ -1,0 +1,26 @@
+{% block navbar %}
+{% include 'aligner/navbar.html' %}
+{% endblock navbar %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapters</title>
+</head>
+<body>
+    <div class="container">
+        <ul> <h5>Book1</h5>
+            <li>
+                <a href="{% url 'aligner:word_list_view' chapter_number=0 %}">Chapter 1</a>
+            </li>
+            <li>
+                <a href="{% url 'aligner:word_list_view' chapter_number=1 %}">Chapter 2</a>
+            </li>
+            <li>
+                <a href="{% url 'aligner:word_list_view' chapter_number=2 %}">Chapter 3</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -25,12 +25,12 @@
             <div class="col-sm-4">
               <chap_fr>
                 {% for l in fren_aligned_indices %}
-                    {% if index == l.1 %}
+                    {% if index|slugify == l.1 %}
                         {% for d in french_sents %}
-                            {% if d.en_sent_id == l.0 %}
+                            {% if d.en_sent_id|slugify == l.0 %}
                             <sentence sent_id={{d.en_sent_id}}>
                                 {% for word in french_words %}
-                                    {% if word.en_sent_id == d.en_sent_id %}
+                                    {% if word.en_sent_id == d.en_sent_id and word.chapter_number == chapter_number|slugify %}
                                         <word word_id={{word.word_id}} en_sent_aligned={{word.en_sent_aligned}} la_sent_aligned="{{word.la_sent_aligned}}" lemma={{word.lemma}} PartOfSpeech={{word.PartOfSpeech}} UDRelation= {{word.UDRelation}} features= {{word.features}}>{{word.word_text}}</word>
                                     {% endif %}
                                 {% endfor %}
@@ -47,7 +47,7 @@
                     {% if index == d.unaligned_id %}
                         <sentence sent_id={{d.unaligned_id}}>
                         {% for word in english_words %}
-                            {% if word.unaligned_id == index|slugify %}
+                            {% if word.unaligned_id == index|slugify and word.chapter_number == chapter_number|slugify %}
                                 <word word_id={{word.word_id}} sent_aligned={{word.sent_aligned}} lemma={{word.lemma}} PartOfSpeech={{word.PartOfSpeech}} UDRelation= {{word.UDRelation}} features= {{word.features}}>{{word.word_text}}</word>
                             {% endif %}
                         {% endfor %}
@@ -59,14 +59,14 @@
             <div class="col-sm-4">
               <chap_lat>
                 {% for l in fren_aligned_indices %}
-                    {% if index == l.1 %}
+                    {% if index|slugify == l.1 %}
                         {% for m in frla_aligned_indices %}
-                            {% if m.0 == l.0 %}
+                            {% if m.0|slugify == l.0 %}
                                 {% for d in latin_sents %}
-                                    {% if d.sent_id == m.1 %}
+                                    {% if d.sent_id|slugify == m.1 %}
                                         <sentence sent_id={{d.sent_id}}>
                                             {% for word in latin_words %}
-                                                {% if word.sent_id == d.sent_id %}
+                                                {% if word.sent_id == d.sent_id and word.chapter_number == chapter_number|slugify %}
                                                     <word word_id={{word.word_id}} sent_aligned={{word.sent_aligned}} lemma={{word.lemma}} PartOfSpeech={{word.PartOfSpeech}} UDRelation= {{word.UDRelation}} features= {{word.features}}>{{word.word_text}}</word>
                                                 {% endif %}
                                             {% endfor %}

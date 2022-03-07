@@ -1,6 +1,7 @@
 import json
 from aligner.models import FrenchWord, EnglishWord, LatinWord
-
+import glob, os
+ 
 en = open('en_data_stanza.json', encoding="utf8")
 fr = open('fr_data_stanza.json', encoding="utf8")
 la = open('lat_data_stanza.json', encoding="utf8")
@@ -31,6 +32,7 @@ def process_eng_data(file):
                     feats = None
                 
                 EnglishWord.objects.create(
+                    chapter_number=word[1][0]['chap_number'],
                     word_text=word[1][0]['word_text'],
                     word_id=word[1][0]['word_id'],
                     align_id=word[1][0]['align_id'],
@@ -69,6 +71,7 @@ def process_lat_data(file):
                     feats = None
                 
                 LatinWord.objects.create(
+                    chapter_number=word[1][0]['chap_number'],
                     word_text=word[1][0]['word_text'],
                     word_id=word[1][0]['word_id'],
                     align_id=word[1][0]['align_id'],
@@ -122,6 +125,7 @@ def process_fre_data(file):
                     eng_sent_aligned = None
 
                 FrenchWord.objects.create(
+                    chapter_number=word[1][0]['chap_number'],
                     word_text=word[1][0]['word_text'],
                     word_id=word[1][0]['word_id'],
                     en_sent_id=word[1][0]['sent_id'],

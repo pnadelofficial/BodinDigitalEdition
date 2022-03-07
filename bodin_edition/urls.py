@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from aligner.views import home_view, ack_view
+from aligner.views import home_view, ack_view, chapter_choices
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('aligner/', include('aligner.urls'), name='word_list_view'),
     path('acknowledgements/', ack_view, name='acknowledgements'),
+    path('chapter_view/',chapter_choices, name='chapter_choices'),
     path('',home_view ,name='home')
 ]

@@ -3,6 +3,7 @@ from email.policy import default
 
 # Create your models here.
 class FrenchWord(models.Model):
+    chapter_number = models.CharField(max_length=30, null=True, blank=True, default='None Provided')
     word_text = models.CharField(max_length=30, default='None Provided')
     word_id = models.IntegerField()
     en_sent_id = models.IntegerField(null=True, blank=True, default='None Provided')
@@ -19,6 +20,7 @@ class FrenchWord(models.Model):
         return f'{self.word_text}'
 
 class EnglishWord(models.Model):
+    chapter_number = models.CharField(max_length=30, null=True, blank=True, default='None Provided')
     word_text = models.CharField(max_length=30, default='None Provided')
     word_id = models.IntegerField()
     sent_id = models.IntegerField()
@@ -34,6 +36,7 @@ class EnglishWord(models.Model):
         return f'{self.word_text}'
 
 class LatinWord(models.Model):
+    chapter_number = models.CharField(max_length=30, null=True, blank=True, default='None Provided')
     word_text = models.CharField(max_length=30, default='None Provided')
     word_id = models.IntegerField()
     sent_id = models.IntegerField()

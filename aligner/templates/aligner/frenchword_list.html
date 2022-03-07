@@ -24,7 +24,7 @@
           <div class="col-sm-4">
             <chap_fr>
               {% for d in fr_unaligned_aligned %}
-                <a href="{% url 'aligner:fr_sentence_view' index=d.unaligned_id %}">{{d.unaligned_id}}</a>
+                <a href="{% url 'aligner:fr_sentence_view' index=d.unaligned_id chapter_number=chapter_number %}">{{d.unaligned_id}}</a>
                 <sentence sent_id={{d.unaligned_id}}>
                   {% for word in french_words %}
                     {% if word.unaligned_id == d.unaligned_id %}
@@ -38,7 +38,7 @@
           <div class="col-sm-4">
             <chap_eng>
               {% for d in en_unaligned_aligned %}
-                <a href="{% url 'aligner:eng_sentence_view' index=d.unaligned_id %}">{{d.unaligned_id}}</a>
+                <a href="{% url 'aligner:eng_sentence_view' index=d.unaligned_id chapter_number=chapter_number %}">{{d.unaligned_id}}</a>
                 <sentence en_id={{d.unaligned_id}}>
                 {% for word in english_words %}
                   {% if word.unaligned_id == d.unaligned_id %}
@@ -52,7 +52,7 @@
           <div class="col-sm-4">
             <chap_lat>
               {% for d in la_unaligned_aligned %}
-                <a href="{% url 'aligner:lat_sentence_view' index=d.unaligned_id %}">{{d.unaligned_id}}</a>
+                <a href="{% url 'aligner:lat_sentence_view' index=d.unaligned_id chapter_number=chapter_number %}">{{d.unaligned_id}}</a>
                 <sentence lat_id={{d.unaligned_id}}>
                 {% for word in latin_words %}
                   {% if word.unaligned_id == d.unaligned_id %}
