@@ -22,14 +22,14 @@ def generateFrLaAlignedIndices(chapter_number):
             frla_aligned_data = json.load(frla_aligned_indices)
             return frla_aligned_data
 
-fren_aligned_indices = open(r'aligner\static\FrEn_aligned_indices.json')
-fren_aligned_data = json.load(fren_aligned_indices) 
+# fren_aligned_indices = open(r'aligner\static\FrEn_aligned_indices.json')
+# fren_aligned_data = json.load(fren_aligned_indices) 
 
-frla_aligned_indices = open(r'aligner\static\FrLa_aligned_indices.json')
-frla_aligned_data = json.load(frla_aligned_indices) 
+# frla_aligned_indices = open(r'aligner\static\FrLa_aligned_indices.json')
+# frla_aligned_data = json.load(frla_aligned_indices) 
 
-enla_aligned_indices = open(r'aligner\static\EnLa_aligned_indices.json')
-enla_aligned_data = json.load(enla_aligned_indices) 
+# enla_aligned_indices = open(r'aligner\static\EnLa_aligned_indices.json')
+# enla_aligned_data = json.load(enla_aligned_indices) 
 
 ## Unaligned/aligned dict updates
 fr_unaligned_list = FrenchWord.objects.order_by().values('unaligned_id').distinct()
