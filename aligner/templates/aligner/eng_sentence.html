@@ -81,7 +81,28 @@
             </div>
         </div>
       </div>
+      <div class="fixed-bottom h-50 bg-secondary text-white">
+        <div class="col text-center">
+          <button type="button" class="btn btn-danger">Hide</button>
+        </div>
+        <br>
+        <p>Click on a word.</p>
+        <div class="row flexible-container">
+          <div class="col-4 p-5 overflow-auto">
+          </div>
+          {% load static %}
+          <div class="col-8">
+            <canvas id="the-canvas"></canvas>
+          </div>
+        </div>
+      </div>
       {% load static %}
     <script src="{% static 'aligner/word_level.js' %}" charset="utf-8"></script>
+    <script src="{% static 'aligner/pdf_interface.js' %}" charset="utf-8"></script>
+    <script>
+      var french_pdf = "{% static 'aligner/french_grammar_resource.pdf'%}"
+      var english_pdf = "{% static 'aligner/GrammarNotes.pdf' %}"
+      var latin_pdf = "{% static 'aligner/F17-JMH-Latin-Grammar-3-1.pdf' %}" 
+    </script>
 </body>
 </html>
