@@ -33,39 +33,39 @@ def generateFrLaAlignedIndices(chapter_number):
 
 ## Unaligned/aligned dict updates
 fr_unaligned_list = FrenchWord.objects.order_by().values('unaligned_id').distinct()
-fr_aligned_list = FrenchWord.objects.order_by().values('en_sent_id').distinct()
+# fr_aligned_list = FrenchWord.objects.order_by().values('en_sent_id').distinct()
 
-for i in fr_unaligned_list:
-    for word in FrenchWord.objects.all():
-        if int(word.unaligned_id) == int(i['unaligned_id']):
-            for j in fr_aligned_list:
-                if j['en_sent_id'] == int(word.en_sent_id):
-                    i['en_sent_id'] = j['en_sent_id']
+# for i in fr_unaligned_list:
+#     for word in FrenchWord.objects.all():
+#         if int(word.unaligned_id) == int(i['unaligned_id']):
+#             for j in fr_aligned_list:
+#                 if j['en_sent_id'] == int(word.en_sent_id):
+#                     i['en_sent_id'] = j['en_sent_id']
 
-en_unaligned_list = EnglishWord.objects.order_by().values('unaligned_id').distinct()
-en_aligned_list = EnglishWord.objects.order_by().values('sent_id').distinct()
+# en_unaligned_list = EnglishWord.objects.order_by().values('unaligned_id').distinct()
+# en_aligned_list = EnglishWord.objects.order_by().values('sent_id').distinct()
 
-for i in en_unaligned_list:
-    for word in EnglishWord.objects.all():
-        if int(word.unaligned_id) == int(i['unaligned_id']):
-            for j in en_aligned_list:
-                if j['sent_id'] == int(word.sent_id):
-                    i['sent_id'] = j['sent_id']
+# for i in en_unaligned_list:
+#     for word in EnglishWord.objects.all():
+#         if int(word.unaligned_id) == int(i['unaligned_id']):
+#             for j in en_aligned_list:
+#                 if j['sent_id'] == int(word.sent_id):
+#                     i['sent_id'] = j['sent_id']
 
-la_unaligned_list = LatinWord.objects.order_by().values('unaligned_id').distinct()
-la_aligned_list = LatinWord.objects.order_by().values('sent_id').distinct()
+# la_unaligned_list = LatinWord.objects.order_by().values('unaligned_id').distinct()
+# la_aligned_list = LatinWord.objects.order_by().values('sent_id').distinct()
 
-for i in la_unaligned_list:
-    for word in LatinWord.objects.all():
-        if int(word.unaligned_id) == int(i['unaligned_id']):
-            for j in la_aligned_list:
-                if j['sent_id'] == int(word.sent_id):
-                    i['sent_id'] = j['sent_id']
+# for i in la_unaligned_list:
+#     for word in LatinWord.objects.all():
+#         if int(word.unaligned_id) == int(i['unaligned_id']):
+#             for j in la_aligned_list:
+#                 if j['sent_id'] == int(word.sent_id):
+#                     i['sent_id'] = j['sent_id']
 
 ## Unaligned id string --> int
-fr_unaligned_int = [dict([a, int(x)] for a, x in b.items()) for b in FrenchWord.objects.order_by().values('unaligned_id').distinct()]
-en_unaligned_int = [dict([a, int(x)] for a, x in b.items()) for b in EnglishWord.objects.order_by().values('unaligned_id').distinct()]
-la_unaligned_int = [dict([a, int(x)] for a, x in b.items()) for b in LatinWord.objects.order_by().values('unaligned_id').distinct()]
+# fr_unaligned_int = [dict([a, int(x)] for a, x in b.items()) for b in FrenchWord.objects.order_by().values('unaligned_id').distinct()]
+# en_unaligned_int = [dict([a, int(x)] for a, x in b.items()) for b in EnglishWord.objects.order_by().values('unaligned_id').distinct()]
+# la_unaligned_int = [dict([a, int(x)] for a, x in b.items()) for b in LatinWord.objects.order_by().values('unaligned_id').distinct()]
 
 def home_view(request):
     return render(request, 'aligner/home.html')
@@ -81,7 +81,7 @@ def fr_sentence_view(request, index, chapter_number):
         'index':str(index),
         'chapter_number':chapter_number,
         'unaligned_aligned':fr_unaligned_list,
-        'french_sents': fr_unaligned_int,
+        'french_sents': [dict([a, int(x)] for a, x in b.items()) for b in FrenchWord.objects.order_by().values('unaligned_id').distinct()],
         'french_words': FrenchWord.objects.all(),
         'english_sents': EnglishWord.objects.order_by().values('sent_id').distinct(),
         'english_words': EnglishWord.objects.all(),
@@ -100,7 +100,7 @@ def eng_sentence_view(request, index, chapter_number):
         'chapter_number':chapter_number,
         'french_sents': FrenchWord.objects.order_by().values('en_sent_id').distinct(),
         'french_words': FrenchWord.objects.all(),
-        'english_sents': en_unaligned_int,
+        'english_sents': [dict([a, int(x)] for a, x in b.items()) for b in EnglishWord.objects.order_by().values('unaligned_id').distinct()],
         'english_words': EnglishWord.objects.all(),
         'latin_sents': LatinWord.objects.order_by().values('sent_id').distinct(),
         'latin_words': LatinWord.objects.all(),
@@ -119,7 +119,7 @@ def lat_sentence_view(request, index, chapter_number):
         'french_words': FrenchWord.objects.all(),
         'english_sents': EnglishWord.objects.order_by().values('sent_id').distinct(),
         'english_words': EnglishWord.objects.all(),
-        'latin_sents': la_unaligned_int,
+        'latin_sents': [dict([a, int(x)] for a, x in b.items()) for b in LatinWord.objects.order_by().values('unaligned_id').distinct()],
         'latin_words': LatinWord.objects.all(),
         'fren_aligned_indices': generateFrEnAlignedIndices(chapter_number),
         'frla_aligned_indices': frla_aligned_data_rev
